@@ -10,7 +10,7 @@ xmlns:th="http://www.thymleaf.org">
 <body>
 <h1>Design your taco!</h1>
 <img th:src="@{/images/taco.jpg}"/>
-<form method="POST" th:object="${design}">
+<form method="POST" th:object="${taco}">
     <div class="grid">
         <div class="ingredient-group" id="wraps">
             <h3>Design your wrap:</h3>
@@ -56,10 +56,15 @@ xmlns:th="http://www.thymleaf.org">
     <div>
         <h3>Назовите вашу сборку Taco:</h3>
         <input type="text" th:field="*{name}"/>
+        <span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</span>
         <br/>
 
         <button>Отправить сборку Taco</button>
     </div>
+</form>
+
+<form method="post" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
 </form>
 </body>
 </html>
